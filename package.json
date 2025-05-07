@@ -1,15 +1,16 @@
 {
   "name": "react-time-tools",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Useful time-based React hooks",
-  "main": "dist/react-time-hooks.umd.js",
-  "module": "dist/react-time-hooks.es.js",
+  "main": "dist/react-time-tools.umd.js",
+  "module": "dist/react-time-tools.es.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "release": "npm run build && npm publish --access public"
   },
   "peerDependencies": {
     "react": ">=17.0.0"

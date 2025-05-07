@@ -7,8 +7,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve("src/index.ts"),
-      name: "ReactTimeHooks",
-      fileName: (format) => `react-time-hooks.${format}.js`,
+      name: "ReactTimeTools",
+      fileName: (format) => `react-time-tools.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom"],
