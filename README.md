@@ -19,7 +19,7 @@ const Clock = () => {
 ## Example: useCountdown
 
 ```tsx
-import { useCountdown } from "react-time-hooks";
+import { useCountdown } from "react-time-tools";
 
 const Timer = () => {
   const { seconds, minutes, start, pause, reset } = useCountdown(60, {
@@ -42,7 +42,7 @@ const Timer = () => {
 ## Example: useStopwatch
 
 ```tsx
-import { useStopwatch } from "react-time-hooks";
+import { useStopwatch } from "react-time-tools";
 
 const Stopwatch = () => {
   const { time, laps, start, pause, reset, addLap } = useStopwatch();
@@ -72,7 +72,7 @@ const Stopwatch = () => {
 ## Example: useDebouncedTime
 
 ```tsx
-import { useDebouncedTime } from "react-time-hooks";
+import { useDebouncedTime } from "react-time-tools";
 
 const SearchInput = () => {
   const [input, setInput] = useState("");
@@ -91,7 +91,7 @@ const SearchInput = () => {
 ## Example: useTimeoutEffect
 
 ```tsx
-import { useTimeoutEffect } from "react-time-hooks";
+import { useTimeoutEffect } from "react-time-tools";
 
 const Message = () => {
   useTimeoutEffect(() => {
