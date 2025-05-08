@@ -6,3 +6,4 @@ export * from "./hooks/useTimeoutEffect";
 export * from "./hooks/useTimeAgo";
 export * from "./hooks/useTimeScheduler";
 export * from "./hooks/useTimeComparison";
+export * from "./hooks/useTimeSpeed";
