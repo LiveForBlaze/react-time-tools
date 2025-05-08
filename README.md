@@ -69,6 +69,39 @@ const Stopwatch = () => {
 };
 ```
 
+## Example: useDebouncedTime
+
+```tsx
+import { useDebouncedTime } from "react-time-hooks";
+
+const SearchInput = () => {
+  const [input, setInput] = useState("");
+  const debouncedInput = useDebouncedTime(input, 500);
+
+  useEffect(() => {
+    if (debouncedInput) {
+      console.log("Search for:", debouncedInput);
+    }
+  }, [debouncedInput]);
+
+  return <input value={input} onChange={(e) => setInput(e.target.value)} />;
+};
+```
+
+## Example: useTimeoutEffect
+
+```tsx
+import { useTimeoutEffect } from "react-time-hooks";
+
+const Message = () => {
+  useTimeoutEffect(() => {
+    alert("Hello after 2 seconds!");
+  }, 2000);
+
+  return <p>Wait for it...</p>;
+};
+```
+
 ## Installation
 
 ```bash
