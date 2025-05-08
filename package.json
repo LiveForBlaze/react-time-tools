@@ -1,6 +1,6 @@
 {
   "name": "react-time-tools",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Useful time-based React hooks",
   "main": "dist/react-time-tools.umd.js",
   "module": "dist/react-time-tools.es.js",

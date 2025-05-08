@@ -2,7 +2,7 @@
 
 Useful time-based React hooks: `useCurrentTime`, `useCountdown`, `useStopwatch` and more.
 
-## Example
+## Example: useCurrentTime
 
 ```tsx
 import { useCurrentTime } from "react-time-tools";
@@ -34,6 +34,36 @@ const Timer = () => {
       <button onClick={start}>Start</button>
       <button onClick={pause}>Pause</button>
       <button onClick={() => reset(90)}>Reset to 90s</button>
+    </div>
+  );
+};
+```
+
+## Example: useStopwatch
+
+```tsx
+import { useStopwatch } from "react-time-hooks";
+
+const Stopwatch = () => {
+  const { time, laps, start, pause, reset, addLap } = useStopwatch();
+
+  return (
+    <div>
+      <p>
+        {time.minutes}:{time.seconds.toString().padStart(2, "0")}.
+        {time.milliseconds}
+      </p>
+      <button onClick={start}>Start</button>
+      <button onClick={pause}>Pause</button>
+      <button onClick={reset}>Reset</button>
+      <button onClick={addLap}>Lap</button>
+      <ul>
+        {laps.map((lap, i) => (
+          <li key={i}>
+            Lap {i + 1}: {lap}ms
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
