@@ -3,3 +3,6 @@ export * from "./hooks/useCountdown";
 export * from "./hooks/useStopwatch";
 export * from "./hooks/useDebouncedTime";
 export * from "./hooks/useTimeoutEffect";
+export * from "./hooks/useTimeAgo";
+export * from "./hooks/useTimeScheduler";
+export * from "./hooks/useTimeComparison";

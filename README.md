@@ -102,6 +102,53 @@ const Message = () => {
 };
 ```
 
+## Example: useTimeAgo
+
+```tsx
+import { useTimeAgo } from "react-time-tools";
+
+const TimeAgoDisplay = () => {
+  const timeAgo = useTimeAgo(new Date("2024-05-01T12:00:00Z"));
+
+  return <p>{timeAgo}</p>;
+};
+```
+
+## Example: useTimeScheduler
+
+```tsx
+import { useTimeScheduler } from "react-time-tools";
+
+const ScheduledFetcher = () => {
+  useTimeScheduler({
+    intervalMs: 1800000, // every 30 minutes
+    task: () => {
+      console.log("Fetching data...");
+      // fetchData();
+    },
+  });
+
+  return <p>Data will be fetched every 30 minutes.</p>;
+};
+```
+
+## Example: useTimeComparison
+
+```tsx
+import { useTimeComparison } from "react-time-tools";
+
+const IsWorkHours = () => {
+  const isWorkingTime = useTimeComparison({
+    start: "09:00",
+    end: "18:00",
+  });
+
+  return (
+    <p>{isWorkingTime ? "Within working hours" : "Outside working hours"}</p>
+  );
+};
+```
+
 ## Installation
 
 ```bash
