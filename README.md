@@ -8,18 +8,18 @@ A lightweight and precise hook collection designed to simplify working with time
 
 ## 🔧 Feature Summary
 
-| Hook                | Description                            |
-| ------------------- | -------------------------------------- |
-| `useCurrentTime`    | Real-time time tracking and formatting |
-| `useCountdown`      | Countdown timer with full control      |
-| `useStopwatch`      | Stopwatch with laps                    |
-| `useDebouncedTime`  | Debounce value updates                 |
-| `useTimeoutEffect`  | Trigger effect once after delay        |
-| `useTimeAgo`        | Relative "X mins ago" strings          |
-| `useInterval`       | Safe recurring logic                   |
-| `useTimeScheduler`  | Repeat task every N ms                 |
-| `useTimeComparison` | Check if now is between two times      |
-| `useTimeSpeed`      | Simulated fast/slow time flow          |
+| Hook                                       | Description                            |
+| ------------------------------------------ | -------------------------------------- |
+| [`useCurrentTime`](#-usecurrenttime)       | Real-time time tracking and formatting |
+| [`useCountdown`](#-usecountdown)           | Countdown timer with full control      |
+| [`useStopwatch`](#-usestopwatch)           | Stopwatch with laps                    |
+| [`useDebouncedTime`](#-usedebouncedtime)   | Debounce value updates                 |
+| [`useTimeoutEffect`](#-usetimeouteffect)   | Trigger effect once after delay        |
+| [`useTimeAgo`](#-usetimeago)               | Relative "X mins ago" strings          |
+| [`useInterval`](#-useinterval)             | Safe recurring logic                   |
+| [`useTimeScheduler`](#-usetimescheduler)   | Repeat task every N ms                 |
+| [`useTimeComparison`](#-usetimecomparison) | Check if now is between two times      |
+| [`useTimeSpeed`](#-usetimespeed)           | Simulated fast/slow time flow          |
 
 ---
 
@@ -342,24 +342,36 @@ export function SimulatedClock() {
 
 ---
 
-## ✅ Why React Time Tools?
-
-- 💡 Focused: every hook solves a specific time-based problem
-- ⚡ Lightweight: no external runtime deps
-- 🔒 Safe: cleans up timers on unmount
-- 🔧 Modern: TypeScript-native, works with React 17–18+
-- 💬 Easy to learn: clean signatures and types
-
----
-
-> Built for: dashboards, games, monitoring panels, real-time UI, time utilities, user feedback systems.
-
-📦 Install:
+## 📦 Installation
 
 ```bash
 npm install react-time-tools
 ```
 
-⭐ Star the repo if you like it — and help improve time-based tooling for React!
+## ✅ Why React Time Tools?
+
+- 🧠 Intuitive API
+- 🧼 Automatic cleanup (no memory leaks)
+- 🧰 Perfect for dashboards, games, productivity tools, and real-time UIs
+- 💡 Works great with hooks like `useEffect`, `useState`, and more
+- 📦 Zero external runtime dependencies
 
 ---
+
+## 🧪 Example Use Cases
+
+- Live clocks, time displays
+- Interactive countdowns or stopwatches
+- Scheduling API calls
+- Demos and simulations with time acceleration
+- Time-based UI toggles
+
+---
+
+## License
+
+MIT
+
+---
+
+Made with ❤️ for React developers working with time.
