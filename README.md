@@ -10,16 +10,53 @@ A lightweight and precise hook collection designed to simplify working with time
 
 | Hook                                       | Description                            |
 | ------------------------------------------ | -------------------------------------- |
-| [`useCurrentTime`](#-usecurrenttime)       | Real-time time tracking and formatting |
 | [`useCountdown`](#-usecountdown)           | Countdown timer with full control      |
-| [`useStopwatch`](#-usestopwatch)           | Stopwatch with laps                    |
+| [`useCurrentTime`](#-usecurrenttime)       | Real-time time tracking and formatting |
 | [`useDebouncedTime`](#-usedebouncedtime)   | Debounce value updates                 |
-| [`useTimeoutEffect`](#-usetimeouteffect)   | Trigger effect once after delay        |
-| [`useTimeAgo`](#-usetimeago)               | Relative "X mins ago" strings          |
 | [`useInterval`](#-useinterval)             | Safe recurring logic                   |
-| [`useTimeScheduler`](#-usetimescheduler)   | Repeat task every N ms                 |
+| [`useStopwatch`](#-usestopwatch)           | Stopwatch with laps                    |
+| [`useTimeAgo`](#-usetimeago)               | Relative "X mins ago" strings          |
 | [`useTimeComparison`](#-usetimecomparison) | Check if now is between two times      |
+| [`useTimeScheduler`](#-usetimescheduler)   | Repeat task every N ms                 |
 | [`useTimeSpeed`](#-usetimespeed)           | Simulated fast/slow time flow          |
+| [`useTimeoutEffect`](#-usetimeouteffect)   | Trigger effect once after delay        |
+
+---
+
+### ⏳ `useCountdown`
+
+Countdown with control over timing.
+
+**Arguments**:
+
+- `initialSeconds: number`
+- `options?: { onEnd?: () => void }`
+
+**Returns**:
+
+- `minutes: number`, `seconds: number`
+- `start()`, `pause()`, `reset(newSeconds?)`
+- `isRunning: boolean`
+
+```tsx
+import { useCountdown } from "react-time-tools";
+
+function CountdownTimer() {
+  const { minutes, seconds, start, pause, reset } = useCountdown(90);
+  return (
+    <div>
+      <p>
+        {minutes}:{seconds.toString().padStart(2, "0")}
+      </p>
+      <button onClick={start}>Start</button>
+      <button onClick={pause}>Pause</button>
+      <button onClick={() => reset(90)}>Reset</button>
+    </div>
+  );
+}
+```
+
+**Use case**: countdowns in forms, quizzes, games.
 
 ---
 
@@ -58,40 +95,64 @@ export function LiveClock() {
 
 ---
 
-### ⏳ `useCountdown`
+### 🔁 `useDebouncedTime`
 
-Countdown with control over timing.
+Delay value updates until user stops interacting.
 
 **Arguments**:
 
-- `initialSeconds: number`
-- `options?: { onEnd?: () => void }`
+- `value: T`
+- `delay: number`
 
 **Returns**:
 
-- `minutes: number`, `seconds: number`
-- `start()`, `pause()`, `reset(newSeconds?)`
-- `isRunning: boolean`
+- `T`
 
-```tsx
-import { useCountdown } from "react-time-tools";
+````tsx
+import { useDebouncedTime } from 'react-time-tools';
+import { useState, useEffect } from 'react';
 
-function CountdownTimer() {
-  const { minutes, seconds, start, pause, reset } = useCountdown(90);
-  return (
-    <div>
-      <p>
-        {minutes}:{seconds.toString().padStart(2, "0")}
-      </p>
-      <button onClick={start}>Start</button>
-      <button onClick={pause}>Pause</button>
-      <button onClick={() => reset(90)}>Reset</button>
-    </div>
-  );
+function DebouncedInput() {
+  const [input, setInput] = useState('');
+  const debounced = useDebouncedTime(input, 500);
+
+  useEffect(() => {
+    if (debounced) console.log('Search:', debounced);
+  }, [debounced]);
+
+  return <input value={input} onChange={(e) => setInput(e.target.value)} />;
 }
-```
+```tsx
+const debounced = useDebouncedTime(input, 500);
+````
 
-**Use case**: countdowns in forms, quizzes, games.
+**Use case**: debounced search, user input.
+
+---
+
+### 🔄 `useInterval`
+
+Call a function at regular intervals (safe version of `setInterval`).
+
+**Arguments**:
+
+- `callback: () => void`
+- `delay: number | null`
+
+````tsx
+import { useInterval } from 'react-time-tools';
+
+function TimerTick() {
+  const [count, setCount] = useState(0);
+  useInterval(() => setCount((c) => c + 1), 1000);
+
+  return <p>Ticks: {count}</p>;
+}
+```tsx
+useInterval(() => setCount((c) => c + 1), 1000);
+````
+
+**Use case**: polling, timers, animations.
 
 ---
 
@@ -137,67 +198,6 @@ function Stopwatch() {
 
 ---
 
-### 🔁 `useDebouncedTime`
-
-Delay value updates until user stops interacting.
-
-**Arguments**:
-
-- `value: T`
-- `delay: number`
-
-**Returns**:
-
-- `T`
-
-````tsx
-import { useDebouncedTime } from 'react-time-tools';
-import { useState, useEffect } from 'react';
-
-function DebouncedInput() {
-  const [input, setInput] = useState('');
-  const debounced = useDebouncedTime(input, 500);
-
-  useEffect(() => {
-    if (debounced) console.log('Search:', debounced);
-  }, [debounced]);
-
-  return <input value={input} onChange={(e) => setInput(e.target.value)} />;
-}
-```tsx
-const debounced = useDebouncedTime(input, 500);
-````
-
-**Use case**: debounced search, user input.
-
----
-
-### ⌛ `useTimeoutEffect`
-
-Run a callback after a delay, with automatic cleanup.
-
-**Arguments**:
-
-- `callback: () => void`
-- `delay: number`
-
-````tsx
-import { useTimeoutEffect } from 'react-time-tools';
-
-function DelayedNotice() {
-  const [visible, setVisible] = useState(true);
-  useTimeoutEffect(() => setVisible(false), 5000);
-
-  return visible ? <p>Visible for 5 seconds</p> : null;
-}
-```tsx
-useTimeoutEffect(() => doSomething(), 3000);
-````
-
-**Use case**: alerts, feedback banners, auto-dismiss.
-
----
-
 ### 🕰 `useTimeAgo`
 
 Convert a `Date` to a human-readable relative string.
@@ -222,58 +222,6 @@ const timeAgo = useTimeAgo(new Date('2024-01-01T10:00:00Z'));
 ````
 
 **Use case**: messaging, logging, news feeds.
-
----
-
-### 🔄 `useInterval`
-
-Call a function at regular intervals (safe version of `setInterval`).
-
-**Arguments**:
-
-- `callback: () => void`
-- `delay: number | null`
-
-````tsx
-import { useInterval } from 'react-time-tools';
-
-function TimerTick() {
-  const [count, setCount] = useState(0);
-  useInterval(() => setCount((c) => c + 1), 1000);
-
-  return <p>Ticks: {count}</p>;
-}
-```tsx
-useInterval(() => setCount((c) => c + 1), 1000);
-````
-
-**Use case**: polling, timers, animations.
-
----
-
-### 🧭 `useTimeScheduler`
-
-Run a task repeatedly at a fixed interval.
-
-**Arguments**:
-
-- `intervalMs: number`
-- `task: () => void`
-
-````tsx
-import { useTimeScheduler } from 'react-time-tools';
-
-function AutoFetcher() {
-  const [data, setData] = useState(null);
-  useTimeScheduler({ intervalMs: 60000, task: () => fetch('/api').then(r => r.json()).then(setData) });
-
-  return <pre>{JSON.stringify(data, null, 2)}</pre>;
-}
-```tsx
-useTimeScheduler({ intervalMs: 1800000, task: () => refreshData() });
-````
-
-**Use case**: periodic fetch, cache refresh.
 
 ---
 
@@ -302,6 +250,32 @@ const isWorking = useTimeComparison({ start: '09:00', end: '18:00' });
 ````
 
 **Use case**: working hours logic, time-based UI.
+
+---
+
+### 🧭 `useTimeScheduler`
+
+Run a task repeatedly at a fixed interval.
+
+**Arguments**:
+
+- `intervalMs: number`
+- `task: () => void`
+
+````tsx
+import { useTimeScheduler } from 'react-time-tools';
+
+function AutoFetcher() {
+  const [data, setData] = useState(null);
+  useTimeScheduler({ intervalMs: 60000, task: () => fetch('/api').then(r => r.json()).then(setData) });
+
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+}
+```tsx
+useTimeScheduler({ intervalMs: 1800000, task: () => refreshData() });
+````
+
+**Use case**: periodic fetch, cache refresh.
 
 ---
 
@@ -339,6 +313,32 @@ export function SimulatedClock() {
   );
 }
 ```
+
+---
+
+### ⌛ `useTimeoutEffect`
+
+Run a callback after a delay, with automatic cleanup.
+
+**Arguments**:
+
+- `callback: () => void`
+- `delay: number`
+
+````tsx
+import { useTimeoutEffect } from 'react-time-tools';
+
+function DelayedNotice() {
+  const [visible, setVisible] = useState(true);
+  useTimeoutEffect(() => setVisible(false), 5000);
+
+  return visible ? <p>Visible for 5 seconds</p> : null;
+}
+```tsx
+useTimeoutEffect(() => doSomething(), 3000);
+````
+
+**Use case**: alerts, feedback banners, auto-dismiss.
 
 ---
 
