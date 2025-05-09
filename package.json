@@ -1,6 +1,6 @@
 {
   "name": "react-time-tools",
-  "version": "0.2.5",
+  "version": "0.2.7",
   "description": "Useful time-based React hooks",
   "main": "dist/react-time-tools.umd.js",
   "module": "dist/react-time-tools.es.js",
@@ -48,5 +48,13 @@
     "performance",
     "simulation",
     "animation"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LiveForBlaze/react-time-tools"
+  },
+  "homepage": "https://github.com/LiveForBlaze/react-time-tools#readme",
+  "bugs": {
+    "url": "https://github.com/LiveForBlaze/react-time-tools/issues"
+  }
 }
