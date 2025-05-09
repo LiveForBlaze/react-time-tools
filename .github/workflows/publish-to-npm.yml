@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🧳 Checkout code
+      - name: 👙 Checkout code
         uses: actions/checkout@v3
 
       - name: 🔊 Setup Node.js
@@ -21,6 +21,9 @@ jobs:
 
       - name: 📦 Install dependencies without optional deps
         run: npm ci --omit=optional
+
+      - name: 🪜 Remove rollup-native workaround
+        run: rm -rf node_modules/rollup/dist/native.js || true
 
       - name: 🏐 Build package
         run: npm run build
