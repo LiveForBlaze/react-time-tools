@@ -1,6 +1,6 @@
 {
   "name": "react-time-tools",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Useful time-based React hooks",
   "main": "dist/react-time-tools.umd.js",
   "module": "dist/react-time-tools.es.js",
@@ -9,6 +9,7 @@
     "dist"
   ],
   "scripts": {
+    "preinstall": "npm config set optional false",
     "build": "vite build",
     "release": "npm run build && npm publish --access public"
   },
@@ -27,6 +28,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "rollup": "^4.40.2",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5"
