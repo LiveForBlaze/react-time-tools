@@ -9,7 +9,6 @@
     "dist"
   ],
   "scripts": {
-    "preinstall": "npm config set optional false",
     "build": "vite build",
     "release": "npm run build && npm publish --access public"
   },
